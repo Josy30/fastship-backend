@@ -11,6 +11,12 @@ const envioSchema = new mongoose.Schema({
         trim: true
     },
 
+    remitente: {
+        type: String,
+        required: [true, 'El remitente es obligatorio'],
+        trim: true
+    },
+
     destinatario: {
         type: String,
         required: [true, 'El destinatario es obligatorio'],
