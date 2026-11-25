@@ -2,24 +2,24 @@ FastShip Backend
 
 1. Descripción del proyecto
 
-En este proyecto se desarrolló un backend para FastShip, una empresa que se dedica al envío de paquetes.
-El objetivo es tener un sistema que permita guardar y administrar la información de los envíos. Por ejemplo, registrar un nuevo pedido, consultar sus datos, actualizar su información, cambiar su estado y eliminarlo.
-Para realizar este proyecto se utilizaron Node.js, Express y MongoDB.
+En este laboratorio desarrollé un backend para una empresa de envios llamada FastShip
+La idea del proyecto es tener un sistema donde se pueda guardar la informacion de los paquetes que se van a enviar y tambien poder consultar sus datos cuando sea necesario, por ejemplo se puede registrar un nuevo envio indicando quien lo envia quien lo recibe y a que direccion debe llegar. Tambien se puede cambiar el estado del paquete para saber si esta pendiente si esta en camino o si ya fue entregado.
+Para realizar este trabajo utilice Node.js Express y MongoDB.
 
-2. Tecnologías utilizadas
+2. Herramientas utilizadas
 
-Las herramientas que se utilizaron para desarrollar el proyecto fueron:
-Node.js
-Express
-MongoDB
-Mongoose
-dotenv
-Nodemon
-Postman
+Para desarrollar el proyecto utilice las siguientes herramientas
+Node.js para ejecutar JavaScript
+Express para crear el servidor y las rutas
+MongoDB para guardar la informacion de los envios
+Mongoose para trabajar con la base de datos
+dotenv para configurar las variables de entorno
+Nodemon para reiniciar el servidor cuando se realizan cambios
+Postman para probar las rutas y comprobar que funcionen correctamente
 
 3. Estructura del proyecto
 
-El proyecto está organizado en diferentes carpetas para que el código sea más facil de entender y mantener.
+Para tener el codigo mas ordenado cree diferentes carpetas y archivos y cada uno tiene una funcion dentro del proyecto
 
 fastship-backend/
 ├── config/
@@ -38,119 +38,72 @@ fastship-backend/
 ├── README.md
 └── server.js
 
-4. Instalación del proyecto
+La carpeta config contiene la conexion con MongoDB
+En controllers se encuentra el codigo que realiza las operaciones de los envios
+En models se define la informacion que va a guardar cada envio
+En routes se encuentran las rutas que permiten realizar las diferentes operaciones
+El archivo server.js es el encargado de iniciar el servidor y conectar las diferentes partes del proyecto
+La carpeta evidencias contiene las capturas de las pruebas realizadas en Postman
 
-Primero, se debe descargar el proyecto desde GitHub:
+4. Instalación y configuracion
+
+Primero se debe descargar el proyecto desde GitHub utilizando el siguiente comando
 git clone https://github.com/Josy30/fastship-backend.git
-Luego, ingresar a la carpeta del proyecto:
+Despues se ingresa a la carpeta del proyecto
 cd fastship-backend
-Después, instalar las dependencias:
+Luego se instalan las dependencias necesarias
 npm install
 
-5. Configuración de MongoDB
 
-Para que el proyecto funcione, es necesario tener MongoDB instalado y ejecutándose.
-También se debe crear un archivo llamado .env en la carpeta principal del proyecto con la siguiente configuración:
-MONGO_URI=mongodb://127.0.0.1:27017/fastship
-PORT=3000
-Este archivo permite configurar la conexión con la base de datos y el puerto del servidor.
+5. Cómo ejecutar el proyecto
 
-6. Cómo ejecutar el proyecto
-
-Para iniciar el servidor en modo desarrollo, ejecutar el siguiente comando:
+Para iniciar el servidor en modo desarrollo se utiliza el siguiente comando
 npm run dev
-Si todo funciona correctamente, aparecerán mensajes indicando que MongoDB se conectó y que el servidor está funcionando.
-La dirección del servidor es:
+Cuando todo funciona correctamente aparecen dos mensajes en la terminal. Uno indica que MongoDB se conecto correctamente y el otro que el servidor esta funcionando.
+La direccion para acceder al servidor es
 http://localhost:3000
 
-7. Funciones del sistema
+6. Funciones y rutas de la API
 
-El sistema permite realizar las siguientes operaciones:
-Registrar nuevos envíos.
-Mostrar todos los envíos registrados.
-Buscar un envío por su ID.
-Consultar los envíos que todavía están pendientes o en tránsito.
-Actualizar la información de un envío.
-Cambiar el estado de un envío.
-Eliminar un envío.
-
-8. Datos de los envíos
-
-Cada envío guarda los siguientes datos:
-Campo
-Descripción
-numeroPedido
-Número que identifica el pedido
-remitente
-Nombre de la persona que envía el paquete
-destinatario
-Nombre de la persona que recibe el paquete
-direccion
-Dirección donde se entregará el paquete
-estado
-Estado actual del envío
-Los estados permitidos son:
-pendiente
-en tránsito
-entregado
-Cuando se registra un nuevo envío, su estado comienza automáticamente como pendiente.
-
-9. Rutas de la API
-
-Las rutas que se utilizaron para trabajar con los envíos son:
-Método
-Ruta
-Función
-POST
-/api/envios
-Registrar un envío
-GET
-/api/envios
-Mostrar todos los envíos
-GET
-/api/envios/activos
-Mostrar los envíos activos
-GET
-/api/envios/:id
-Buscar un envío por ID
-PUT
-/api/envios/:id
-Actualizar un envío
-PATCH
-/api/envios/:id/estado
-Cambiar el estado de un envío
-DELETE
-/api/envios/:id
-Eliminar un envío
-
-10. Pruebas realizadas
-
-Para comprobar que el sistema funciona correctamente, se utilizó Postman.
-Se realizaron pruebas para registrar, consultar, actualizar y eliminar envíos.
-También se probaron algunos casos donde los datos eran incorrectos, por ejemplo, registrar un pedido con un número que ya existe o intentar guardar un envío sin completar los campos obligatorios.
+El sistema permite realizar las siguientes operaciones
+Registrar nuevos envios.
+Mostrar todos los envios registrados.
+Buscar un envio por su ID.
+Consultar los envios pendientes o en transito.
+Actualizar la informacion de un envio.
+Cambiar el estado de un envio.
+Eliminar un envio.
+Cada envio guarda el numero de pedido el remitente el destinatario la direccion de entrega y el estado.
+Los estados permitidos son pendiente en transito y entregado. Cuando se registra un nuevo envio su estado comienza como pendiente.
+Para realizar las pruebas se utilizo Postman. Se probaron las operaciones de registro consulta actualizacion y eliminacion. Tambien se probaron datos incorrectos y numeros de pedido repetidos.
 Las capturas de estas pruebas se encuentran en la carpeta evidencias.
 
-11. Argumentación técnica
 
-Por qué se utilizó MongoDB?
-Se eligió MongoDB porque permite guardar la información en documentos y organizar los datos de cada envío. De esta manera, podemos consultar y modificar la información de los pedidos cuando sea necesario.
-Por qué se utilizaron rutas y controladores en Express?
-Se separaron las rutas y los controladores para tener el proyecto más ordenado. Las rutas reciben las solicitudes y los controladores se encargan de realizar las operaciones con los envíos.
-Cómo se manejan los errores y las validaciones?
+7. Argumentación técnica
 
-Se utilizaron validaciones con Mongoose para comprobar que los campos obligatorios estén completos y que los estados sean los permitidos.
-También se agregaron controles para evitar registrar números de pedido repetidos y para mostrar mensajes cuando ocurre algún error, por ejemplo, cuando no se encuentra un envío.
+Por que elegi MongoDB para este proyecto?
+Para desarrollar este proyecto decidi utilizar MongoDB porque necesitaba guardar la informacion de los envios de una manera organizada y que fuera facil de consultar, y cda envio tiene varios datos como el numero del pedido el remitente el destinatario la direccion y el estado. Con MongoDB puedo guardar toda esta informacion dentro de un mismo documento y acceder a ella cuando necesito consultar o modificar un envio.
+Tambien utilice Mongoose porque me permitio definir como se deben guardar los datos y establecer algunas reglas para evitar que se registren envios incompletos o con informacion incorrecta.
+Por ejemplo configure el numero de pedido como unico para evitar que dos envios tengan el mismo numero. Tambien estableci que el destinatario la direccion y el remitente sean campos obligatorios.
 
-12. Conclusiones
+Por que separe las rutas y los controladores en Express?
+Al desarrollar el backend decidi separar las rutas de los controladores para que el codigo estuviera mejor organizado y no tener todas las instrucciones dentro de un solo archivo.
+Las rutas se encargan de recibir las solicitudes que llegan a la API. Por ejemplo cuando quiero registrar un envio utilizo el metodo POST y cuando necesito consultar todos los envios utilizo GET, tambienlos controladores contienen las instrucciones que se ejecutan para cada solicitud. Alli se encuentra la logica para registrar consultar actualizar cambiar el estado y eliminar los envios.
+Esta separacion me ayudo a entender mejor como funciona Express y tambien hizo que fuera mas facil encontrar y corregir errores durante el desarrollo.
 
-Durante el desarrollo del proyecto, uno de los desafíos fue configurar la conexión entre Express y MongoDB y conseguir que todas las rutas funcionaran correctamente. Las pruebas con Postman ayudaron a encontrar errores y comprobar que las operaciones se realizaran correctamente.
+Como maneje los errores y las validaciones?
+Durante el desarrollo comprendi que no basta con hacer que el sistema registre informacion sino que tambien es necesario comprobar que los datos sean correctos, por eso utilice las validaciones de Mongoose para indicar que algunos campos son obligatorios y para establecer los estados que puede tener un envio, asi el sistema no permite registrar un envio sin los datos necesarios ni utilizar un estado que no esta permitido.
+Tambien agregue controles en los controladores para manejar diferentes situaciones, por ejemplo cuando intento registrar un numero de pedido que ya existe el sistema responde con un error indicando que ese numero ya esta registrado. Si busco un envio que no existe tambien recibo un mensaje indicando que no se encontro el registro.
+Para comprobar que estas validaciones funcionaran realice diferentes pruebas con Postman. Esto me permitio observar las respuestas del servidor y corregir algunos errores durante el desarrollo.
 
-Con este proyecto aprendí que es importante organizar el backend utilizando modelos, rutas y controladores. También comprendí que las validaciones y el manejo de errores ayudan a evitar problemas con los datos y permiten que el sistema funcione mejor.
+8. Conclusiones
 
-13. Autor
+Durante el desarrollo de este laboratorio tuve algunas dificultades principalmente al configurar la conexion entre Express y MongoDB y al conseguir que todas las rutas funcionaran correctamente, al principio necesitaba comprobar que el servidor se conectara con la base de datos y que cada solicitud realizara la operacion esperada y para resolver estos problemas fui probando las rutas con Postman y revisando las respuestas que devolvia el servidor, con estas pruebas pude encontrar errores y entender mejor como se comunican las diferentes partes de un backend.
 
-Proyecto realizado para el laboratorio8 de base de datos avanzados con desarrollo de backend en Express y MongoDB.
-Repositorio GitHub: https://github.com/Josy30/fastship-backend
+Al realizar este proyecto aprendi que es importante organizar el codigo y no colocar todas las funciones en un solo archivo. Separar los modelos las rutas y los controladores me ayudo a entender mejor la funcion de cada uno y a trabajar de una manera mas ordenada, tambien comprendi que las validaciones y el manejo de errores son necesarios porque permiten controlar la informacion que se guarda y evitar problemas cuando un usuario envia datos incorrectos.
+
+Otra cosa que aprendi es que probar una API es tan importante como programarla con Postman pude comprobar si las operaciones de registrar consultar actualizar y eliminar realmente funcionaban, tambien pude probar situaciones en las que los datos estaban incompletos o el numero de pedido ya existia y esto me ayudo a comprender que un backend no solamente debe funcionar cuando los datos son correctos sino que tambien debe responder adecuadamente cuando ocurre algun error.
+
 
 
 

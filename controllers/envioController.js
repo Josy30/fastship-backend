@@ -1,6 +1,6 @@
 const Envio = require('../models/Envio');
 
-// POST: Crear un nuevo envío
+
 const crearEnvio = async (req, res) => {
     try {
         const nuevoEnvio = new Envio(req.body);
@@ -13,7 +13,7 @@ const crearEnvio = async (req, res) => {
 
     } catch (error) {
 
-    // Verificar si el número de pedido ya existe
+    
     if (error.code === 11000) {
         return res.status(409).json({
             mensaje: 'El número de pedido ya existe'
@@ -27,7 +27,6 @@ const crearEnvio = async (req, res) => {
 }
 };
 
-// GET: Listar todos los envíos
 const listarEnvios = async (req, res) => {
     try {
         const envios = await Envio.find();
@@ -48,7 +47,7 @@ const listarEnvios = async (req, res) => {
 
 
 
-// GET: Buscar un envío por su ID
+
 const obtenerEnvioPorId = async (req, res) => {
     try {
         const envio = await Envio.findById(req.params.id);
@@ -74,8 +73,6 @@ const obtenerEnvioPorId = async (req, res) => {
 
 
 
-
- // PUT: Actualizar un envío completo
 const actualizarEnvio = async (req, res) => {
     try {
         const envio = await Envio.findByIdAndUpdate(
@@ -110,7 +107,6 @@ const actualizarEnvio = async (req, res) => {
 
 
 
-// PATCH: Cambiar únicamente el estado del envío
 const cambiarEstadoEnvio = async (req, res) => {
     try {
         const { estado } = req.body;
@@ -159,7 +155,6 @@ const cambiarEstadoEnvio = async (req, res) => {
 
 
 
- // DELETE: Eliminar un envío
 const eliminarEnvio = async (req, res) => {
     try {
         const envio = await Envio.findByIdAndDelete(req.params.id);
@@ -186,7 +181,6 @@ const eliminarEnvio = async (req, res) => {
 
 
 
- // GET: Listar envíos activos
 const listarEnviosActivos = async (req, res) => {
     try {
         const envios = await Envio.find({
@@ -210,7 +204,6 @@ const listarEnviosActivos = async (req, res) => {
 
 
 
-// Exportar funciones
 module.exports = {
     crearEnvio,
     listarEnvios,

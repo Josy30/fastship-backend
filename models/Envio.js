@@ -1,7 +1,6 @@
 
 const mongoose = require('mongoose');
 
-// Definir la estructura de un envío
 const envioSchema = new mongoose.Schema({
 
     numeroPedido: {
@@ -39,7 +38,6 @@ const envioSchema = new mongoose.Schema({
     timestamps: true
 });
 
-// Crear y exportar el modelo
 const Envio = mongoose.model('Envio', envioSchema);
 
 module.exports = Envio;
